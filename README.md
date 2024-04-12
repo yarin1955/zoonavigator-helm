@@ -1,0 +1,1 @@
+thanks robcowart for the explanations about each variable

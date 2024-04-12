@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  zoonavigator:
+  - apiVersion: v2
+    appVersion: 0.7.1
+    created: "2024-04-13T01:02:18.8953478+03:00"
+    description: A Helm chart for Kubernetes
+    digest: 48dd8b014cce44ac48ada082a6332bf873385063cf3f59c18b5ad2abd6b775dc
+    name: zoonavigator
+    type: application
+    urls:
+    - charts/zoonavigator-0.1.0.tgz
+    version: 0.1.0
+generated: "2024-04-13T01:02:18.893286+03:00"
