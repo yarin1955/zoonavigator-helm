@@ -1,6 +1,10 @@
 apiVersion: v2
 name: zoonavigator
-description: A Helm chart for Kubernetes
+description: ui for zookeeper
+
+keywords:
+- zookeeper
+- ui
 
 # A chart can be either an 'application' or a 'library' chart.
 #
