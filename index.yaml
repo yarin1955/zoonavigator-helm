@@ -3,12 +3,19 @@ entries:
   zoonavigator:
   - apiVersion: v2
     appVersion: 0.7.1
-    created: "2024-04-13T01:02:18.8953478+03:00"
-    description: A Helm chart for Kubernetes
-    digest: 48dd8b014cce44ac48ada082a6332bf873385063cf3f59c18b5ad2abd6b775dc
+    created: "2024-04-13T08:39:08.0407789+03:00"
+    description: ui for zookeeper
+    digest: be4487941b31c63f6338378547d586823fa7ce33492fde1090baafe4868a259c
+    home: https://github.com/yarin1955/zoonavigator-helm
+    icon: https://raw.githubusercontent.com/yarin1955/zoonavigator-helm/master/images/zoonavigator.png
+    keywords:
+    - zookeeper
+    - ui
     name: zoonavigator
+    sources:
+    - https://github.com/yarin1955/zoonavigator-helm
     type: application
     urls:
     - charts/zoonavigator-0.1.0.tgz
     version: 0.1.0
-generated: "2024-04-13T01:02:18.893286+03:00"
+generated: "2024-04-13T08:39:08.0402217+03:00"
