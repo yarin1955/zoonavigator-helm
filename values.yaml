@@ -100,29 +100,42 @@ client:
   # Set the value to false to disable SASL authentication.
   ZK_SASL_CLIENT: 'false'
 
+  #ZK_SASL_CLIENT_USERNAME: 'zookeeper'
+
   # Specifies the context key in the JAAS login file.
   #ZK_SASL_CLIENT_CONFIG: 'Client'
 
   # Realm part of the server principal. By default it is the client principal realm.
   #ZK_SERVER_REALM: ''
 
-  asas: fff
-
   ssl:
-
     # If you want to connect to the server secure client port, you need to set this property to true. This will
     # connect to server using SSL with specified credentials. Note that it requires using the Netty client.
-    #ZK_CLIENT_SECURE: ''
+    ZK_CLIENT_SECURE: 'true'
 
     # Specifies which ClientCnxnSocket to be used. If you want to connect to server’s secure client port, you need to
     # set this property to :org.apache.zookeeper.ClientCnxnSocketNetty.
     ZK_CLIENT_CNXN_SOCKET: 'org.apache.zookeeper.ClientCnxnSocketNIO'
 
-    # Specifies the primary part of the server principal. Learn more here.
-    #ZK_SASL_CLIENT_USERNAME: 'zookeeper'
-
-    # Specifies the password to a JKS containing the local credentials to be used for SSL connections.
-    #ZK_SSL_KEYSTORE_PASSWORD: ''
+    trustore:
+      # Specifies the password to a JKS containing the remote credentials to be used for SSL connections.
+      password: ''
+      secretname: 
+      # Specifies the file path to a JKS containing the remote credentials to be used for SSL connections.
+      mountPath: /tls
+      subPath: ""
+      secretName: zookeeper-tls
+      readOnly: true
+    
+    keystore:
+      # Specifies the password to a JKS containing the local credentials to be used for SSL connections.
+      password: ''
+      secretname:
+      # Specifies the file path to a JKS containing the local credentials to be used for SSL connections.
+      mountPath: /tls
+      subPath: ""
+      secretName: zookeeper-tls
+      readOnly: true
 
     # Specifies the password to a JKS containing the remote credentials to be used for SSL connections.
     #ZK_SSL_TRUSTSTORE_PASSWORD: ''

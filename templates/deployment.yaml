@@ -45,6 +45,15 @@ spec:
             {{- toYaml .Values.livenessProbe | nindent 12 }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+      {{- if eq .Values.client.ssl.ZK_CLIENT_SECURE "true" }}
+      {{ $securityStores = append .Values.client.ssl.trustore .Values.client.ssl.keystore}}
+      volumes:  
+      # {{- range .Values.agent.securityStore }}
+      #   - name: "dfdf"
+      #     secret:
+      #       secretName: {{ .secretName }}
+      # {{- end }}
+      {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
