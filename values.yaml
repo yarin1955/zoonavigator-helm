@@ -53,11 +53,11 @@ ingress:
     - host: zoo.info
       paths:
         - path: /
-          pathType: Prefix
-  tls: []
-  #  - secretName: example-cert
-  #    hosts:
-  #      - chart-example.local
+          pathType: ImplementationSpecific
+  tls: 
+   - secretName: hey-tls
+     hosts:
+       - zoo.info
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
@@ -77,28 +77,12 @@ livenessProbe:
     port: http
 
 ui:
-  ########## Server ##########
-
-  # The path to the keystore containing the private key and certificate, if not provided generates a keystore for
-  # you.
-  #SSL_KEYSTORE_PATH: ''
-
-  # The password to the keystore, defaults to a blank password.
-  #SSL_KEYSTORE_PASSWORD: ''
-
-  # The key store type.
-  #SSL_KEYSTORE_TYPE: JKS
-
   # Sets session inactivity timeout for users. This value is in milliseconds.
   #SESSION_TIMEOUT_MILLIS: 900000
 
-  # Secret key for Play Framework - used for signing session cookies and CSRF tokens. Defaults to 64 random
-  # characters generated from /dev/urandom.
-  #SECRET_KEY: ''
-
   # If set, ZooNavigator will use this value as a default connection string and skip the connect form,
   # automatically connecting to listed ZooKeeper servers.
-  AUTO_CONNECT_CONNECTION_STRING: 'zoo-1:2181,zoo-2:2181,zoo-3:2181'
+  AUTO_CONNECT_CONNECTION_STRING: '190.34.24.1:2181,190.34.24.2:2181,190.34.24.3:2181'
 
   # In addition to presetting connection string as explained above, you can also set Auth info which ZooNavigator
   # will use to authenticate with ZooKeeper during the auto-connect. Use semicolon (;) to separate multiple entries.
@@ -119,31 +103,39 @@ client:
   # Specifies the context key in the JAAS login file.
   #ZK_SASL_CLIENT_CONFIG: 'Client'
 
-  # Specifies the primary part of the server principal. Learn more here.
-  #ZK_SASL_CLIENT_USERNAME: 'zookeeper'
-
   # Realm part of the server principal. By default it is the client principal realm.
   #ZK_SERVER_REALM: ''
 
-  # If you want to connect to the server secure client port, you need to set this property to true. This will
-  # connect to server using SSL with specified credentials. Note that it requires using the Netty client.
-  #ZK_CLIENT_SECURE: ''
+  asas: fff
 
-  # Specifies which ClientCnxnSocket to be used. If you want to connect to server’s secure client port, you need to
-  # set this property to :org.apache.zookeeper.ClientCnxnSocketNetty.
-  ZK_CLIENT_CNXN_SOCKET: 'org.apache.zookeeper.ClientCnxnSocketNIO'
+  ssl:
 
-  # Specifies the file path to a JKS containing the local credentials to be used for SSL connections.
-  #ZK_SSL_KEYSTORE_PATH: ''
+    # If you want to connect to the server secure client port, you need to set this property to true. This will
+    # connect to server using SSL with specified credentials. Note that it requires using the Netty client.
+    #ZK_CLIENT_SECURE: ''
 
-  # Specifies the password to a JKS containing the local credentials to be used for SSL connections.
-  #ZK_SSL_KEYSTORE_PASSWORD: ''
+    # Specifies which ClientCnxnSocket to be used. If you want to connect to server’s secure client port, you need to
+    # set this property to :org.apache.zookeeper.ClientCnxnSocketNetty.
+    ZK_CLIENT_CNXN_SOCKET: 'org.apache.zookeeper.ClientCnxnSocketNIO'
 
-  # Specifies the file path to a JKS containing the remote credentials to be used for SSL connections.
-  #ZK_SSL_TRUSTSTORE_PATH: ''
+    # Specifies the primary part of the server principal. Learn more here.
+    #ZK_SASL_CLIENT_USERNAME: 'zookeeper'
 
-  # Specifies the password to a JKS containing the remote credentials to be used for SSL connections.
-  #ZK_SSL_TRUSTSTORE_PASSWORD: ''
+    # Specifies the password to a JKS containing the local credentials to be used for SSL connections.
+    #ZK_SSL_KEYSTORE_PASSWORD: ''
+
+    # Specifies the password to a JKS containing the remote credentials to be used for SSL connections.
+    #ZK_SSL_TRUSTSTORE_PASSWORD: ''
+    # - name: ZK_SSL_TRUSTSTORE_PATH
+    #   mountPath: /tls
+    #   subPath: ""
+    #   secretName: zookeeper-tls
+    #   readOnly: true
+    # - name: ZK_SSL_KEYSTORE_PATH
+    #   mountPath: /tls
+    #   subPath: ""
+    #   secretName: zookeeper-tls
+    #   readOnly: true
 
 java:
   # Custom Java arguments.
