@@ -41,18 +41,31 @@ spec:
           envFrom:
           - configMapRef:
               name: {{ include "zoonavigator.fullname" . }}
+          {{- if eq .Values.client.ssl.ZK_CLIENT_SECURE "true" }}
+          volumeMounts:
+            - name: "truststore"
+              mountPath: {{ .Values.client.ssl.truststore.mountPath }}
+              subPath: {{ .Values.client.ssl.truststore.subPath }}
+              readOnly: {{ .Values.client.ssl.truststore.readOnly }}  
+            - name: "keystore"
+              mountPath: {{ .Values.client.ssl.keystore.mountPath }}
+              subPath: {{ .Values.client.ssl.keystore.subPath }}
+              readOnly: {{ .Values.client.ssl.keystore.readOnly }}  
+          {{- end}}
           livenessProbe:
             {{- toYaml .Values.livenessProbe | nindent 12 }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- if eq .Values.client.ssl.ZK_CLIENT_SECURE "true" }}
-      {{ $securityStores = append .Values.client.ssl.trustore .Values.client.ssl.keystore}}
-      volumes:  
-      # {{- range .Values.agent.securityStore }}
-      #   - name: "dfdf"
-      #     secret:
-      #       secretName: {{ .secretName }}
-      # {{- end }}
+      volumes:
+        - name: "truststore"
+          secret:
+            secretName: {{ .Values.client.ssl.truststore.secretName }}
+            optional: {{ .Values.client.ssl.truststore.optional}}
+        - name: "keystore"
+          secret:
+            secretName: {{ .Values.client.ssl.keystore.secretName }}
+            optional: {{ .Values.client.ssl.truststore.optional}}
       {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:

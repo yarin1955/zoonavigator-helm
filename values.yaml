@@ -117,15 +117,15 @@ client:
     # set this property to :org.apache.zookeeper.ClientCnxnSocketNetty.
     ZK_CLIENT_CNXN_SOCKET: 'org.apache.zookeeper.ClientCnxnSocketNIO'
 
-    trustore:
+    truststore:
       # Specifies the password to a JKS containing the remote credentials to be used for SSL connections.
       password: ''
-      secretname: 
       # Specifies the file path to a JKS containing the remote credentials to be used for SSL connections.
       mountPath: /tls
       subPath: ""
       secretName: zookeeper-tls
       readOnly: true
+      optional: true
     
     keystore:
       # Specifies the password to a JKS containing the local credentials to be used for SSL connections.
@@ -136,6 +136,7 @@ client:
       subPath: ""
       secretName: zookeeper-tls
       readOnly: true
+      optional: true
 
     # Specifies the password to a JKS containing the remote credentials to be used for SSL connections.
     #ZK_SSL_TRUSTSTORE_PASSWORD: ''
