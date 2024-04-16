@@ -111,13 +111,13 @@ client:
   ssl:
     # If you want to connect to the server secure client port, you need to set this property to true. This will
     # connect to server using SSL with specified credentials. Note that it requires using the Netty client.
-    ZK_CLIENT_SECURE: ''
+    ZK_CLIENT_SECURE: true
 
     truststore:
       # Specifies the password to a JKS containing the remote credentials to be used for SSL connections.
       password: ''
       # Specifies the file path to a JKS containing the remote credentials to be used for SSL connections.
-      mountPath: /tls
+      mountPath: /aa
       subPath: ""
       secretName: zookeeper-tls
       readOnly: true

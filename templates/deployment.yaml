@@ -41,7 +41,7 @@ spec:
           envFrom:
           - configMapRef:
               name: {{ include "zoonavigator.fullname" . }}
-          {{- if eq .Values.client.ssl.ZK_CLIENT_SECURE "true" }}
+          {{- if .Values.client.ssl.ZK_CLIENT_SECURE }}
           volumeMounts:
             - name: "truststore"
               mountPath: {{ .Values.client.ssl.truststore.mountPath }}
@@ -56,7 +56,7 @@ spec:
             {{- toYaml .Values.livenessProbe | nindent 12 }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
-      {{- if eq .Values.client.ssl.ZK_CLIENT_SECURE "true" }}
+      {{- if .Values.client.ssl.ZK_CLIENT_SECURE }}
       volumes:
         - name: "truststore"
           secret:
