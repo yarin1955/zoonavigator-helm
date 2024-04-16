@@ -111,11 +111,7 @@ client:
   ssl:
     # If you want to connect to the server secure client port, you need to set this property to true. This will
     # connect to server using SSL with specified credentials. Note that it requires using the Netty client.
-    ZK_CLIENT_SECURE: 'true'
-
-    # Specifies which ClientCnxnSocket to be used. If you want to connect to server’s secure client port, you need to
-    # set this property to :org.apache.zookeeper.ClientCnxnSocketNetty.
-    ZK_CLIENT_CNXN_SOCKET: 'org.apache.zookeeper.ClientCnxnSocketNIO'
+    ZK_CLIENT_SECURE: ''
 
     truststore:
       # Specifies the password to a JKS containing the remote credentials to be used for SSL connections.
@@ -137,19 +133,6 @@ client:
       secretName: zookeeper-tls
       readOnly: true
       optional: true
-
-    # Specifies the password to a JKS containing the remote credentials to be used for SSL connections.
-    #ZK_SSL_TRUSTSTORE_PASSWORD: ''
-    # - name: ZK_SSL_TRUSTSTORE_PATH
-    #   mountPath: /tls
-    #   subPath: ""
-    #   secretName: zookeeper-tls
-    #   readOnly: true
-    # - name: ZK_SSL_KEYSTORE_PATH
-    #   mountPath: /tls
-    #   subPath: ""
-    #   secretName: zookeeper-tls
-    #   readOnly: true
 
 java:
   # Custom Java arguments.
