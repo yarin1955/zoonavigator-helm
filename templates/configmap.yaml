@@ -10,6 +10,7 @@ data:
     {{- toYaml . | nindent 2 }}
   {{- end }}
   {{- with .Values.client }}
+  {{ $_ := unset . "ssl" }}
     {{- toYaml . | nindent 2 }}
   {{- end }}
   {{- with .Values.java }}
