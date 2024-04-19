@@ -2,8 +2,25 @@ apiVersion: v1
 entries:
   zoonavigator:
   - apiVersion: v2
+    appVersion: 0.8.0
+    created: "2024-04-20T01:58:00.257334+03:00"
+    description: ui for zookeeper
+    digest: 1127f65474f07f29bb632423c2d1d547e90012e4e62cd67a1b5567fd5e20bcef
+    home: https://github.com/yarin1955/zoonavigator-helm
+    icon: https://raw.githubusercontent.com/yarin1955/zoonavigator-helm/master/images/zoonavigator.png
+    keywords:
+    - zookeeper
+    - ui
+    name: zoonavigator
+    sources:
+    - https://github.com/yarin1955/zoonavigator-helm
+    type: application
+    urls:
+    - charts/zoonavigator-0.2.0.tgz
+    version: 0.2.0
+  - apiVersion: v2
     appVersion: 0.7.1
-    created: "2024-04-13T08:39:08.0407789+03:00"
+    created: "2024-04-20T01:58:00.2552065+03:00"
     description: ui for zookeeper
     digest: be4487941b31c63f6338378547d586823fa7ce33492fde1090baafe4868a259c
     home: https://github.com/yarin1955/zoonavigator-helm
@@ -18,4 +35,4 @@ entries:
     urls:
     - charts/zoonavigator-0.1.0.tgz
     version: 0.1.0
-generated: "2024-04-13T08:39:08.0402217+03:00"
+generated: "2024-04-20T01:58:00.2546616+03:00"
