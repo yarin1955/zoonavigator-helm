@@ -41,16 +41,14 @@ spec:
           envFrom:
           - configMapRef:
               name: {{ include "zoonavigator.fullname" . }}
+          - secretRef:
+              name: {{ include "zoonavigator.fullname" . }}
           {{- if .Values.client.ssl.ZK_CLIENT_SECURE }}
           volumeMounts:
             - name: "truststore"
               mountPath: {{ .Values.client.ssl.truststore.mountPath }}
               subPath: {{ .Values.client.ssl.truststore.subPath }}
               readOnly: {{ .Values.client.ssl.truststore.readOnly }}  
-            - name: "keystore"
-              mountPath: {{ .Values.client.ssl.keystore.mountPath }}
-              subPath: {{ .Values.client.ssl.keystore.subPath }}
-              readOnly: {{ .Values.client.ssl.keystore.readOnly }}  
           {{- end}}
           livenessProbe:
             {{- toYaml .Values.livenessProbe | nindent 12 }}
@@ -61,10 +59,6 @@ spec:
         - name: "truststore"
           secret:
             secretName: {{ .Values.client.ssl.truststore.secretName }}
-            optional: {{ .Values.client.ssl.truststore.optional}}
-        - name: "keystore"
-          secret:
-            secretName: {{ .Values.client.ssl.keystore.secretName }}
             optional: {{ .Values.client.ssl.truststore.optional}}
       {{- end }}
       {{- with .Values.nodeSelector }}

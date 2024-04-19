@@ -8,7 +8,7 @@ image:
   repository: elkozmon/zoonavigator
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "0.7.1"
+  tag: "1.1.2"
 
 imagePullSecrets: []
 nameOverride: ""
@@ -82,7 +82,7 @@ ui:
 
   # If set, ZooNavigator will use this value as a default connection string and skip the connect form,
   # automatically connecting to listed ZooKeeper servers.
-  AUTO_CONNECT_CONNECTION_STRING: '190.34.24.1:2181,190.34.24.2:2181,190.34.24.3:2181'
+  AUTO_CONNECT_CONNECTION_STRING: 'my-zookeeper-headless:2181'
 
   # In addition to presetting connection string as explained above, you can also set Auth info which ZooNavigator
   # will use to authenticate with ZooKeeper during the auto-connect. Use semicolon (;) to separate multiple entries.
@@ -111,26 +111,25 @@ client:
   ssl:
     # If you want to connect to the server secure client port, you need to set this property to true. This will
     # connect to server using SSL with specified credentials. Note that it requires using the Netty client.
-    ZK_CLIENT_SECURE: true
+    ZK_CLIENT_SECURE: false
 
     truststore:
       # Specifies the password to a JKS containing the remote credentials to be used for SSL connections.
-      password: ''
+      password: 'a'
       # Specifies the file path to a JKS containing the remote credentials to be used for SSL connections.
-      mountPath: /aa
+      mountPath: "/opt/bitnami/zookeeper/config/certs/client"
       subPath: ""
-      secretName: zookeeper-tls
+      secretName: my-zookeeper-client-tls-pass
       readOnly: true
       optional: true
     
     keystore:
       # Specifies the password to a JKS containing the local credentials to be used for SSL connections.
-      password: ''
-      secretname:
+      password: 'a'
       # Specifies the file path to a JKS containing the local credentials to be used for SSL connections.
-      mountPath: /tls
-      subPath: ""
-      secretName: zookeeper-tls
+      mountPath: "/opt/bitnami/zookeeper/config/certs/client/"
+      subPath: "zookeeper.keystore.jks"
+      secretName: my-zookeeper-client-tls-pass
       readOnly: true
       optional: true
 
